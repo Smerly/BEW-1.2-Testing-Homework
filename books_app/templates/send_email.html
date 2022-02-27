@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<form method="POST" action="{{ url_for('main.email_form') }}">
+	{{ form.csrf_token }}
+	<!--  -->
+	<fieldset>
+		<legend>Send your email</legend>
+		{{ form.email_address.label }} {{ form.email_address }}
+		<!--  -->
+		<ul>
+			{% for error in form.email_address.errors %}
+			<li class="error">{{ error }}</li>
+			{% endfor %}
+		</ul>
+		<!--  -->
+		{{ form.message.label }} {{ form.message }}
+		<ul>
+			{% for error in form.message.errors %}
+			<li class="error">{{ error }}</li>
+			{% endfor %}
+		</ul>
+
+		{{ form.submit }}
+		<!--  -->
+	</fieldset>
+</form>
+{% endblock %}
